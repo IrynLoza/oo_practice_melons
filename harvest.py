@@ -78,7 +78,6 @@ def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
     # Fill in the rest
-
     code_dict = {}
     
     for melon in melon_types:
@@ -100,6 +99,7 @@ class Melon(object):
     # Fill in the rest
     # Needs __init__ and is_sellable methods
     def __init__(self, melons_by_id, shape_rating, color_rating, harvest_from_field, harvest_by):
+                """Initialize a melon."""
 
                 self.melons_by_id = make_melon_type_lookup(make_melon_types())
 
@@ -108,12 +108,12 @@ class Melon(object):
                 self.harvest_from_field = harvest_from_field
                 self.harvest_by = harvest_by
 
-    def is_sellable(self):  
+    def is_sellable(self): 
+        """Check if melons are sellable""" 
 
-        if self.shape_rating > 5 and self.color_rating > 5:
-            if self.harvest_from_field != 3:
-                return True
-            return False    
+        if self.shape_rating > 5 and self.color_rating > 5 and self.harvest_from_field != 3:
+            return True    
+        return False    
 
 
 def make_melons(melon_types):
@@ -155,15 +155,15 @@ def make_melons(melon_types):
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
 
-    # Fill in the rest 
+    # Fill in the rest
+    sellability = '' 
     for melon in melons: 
-        print(f'Harvested by {melon.harvest_by} from Field {melon.harvest_from_field}')
-        for result in is_sellable():
-            if result == True:
-                print(f'CAN BE SOLD')
-            print(f'NOT SELLABLE')    
-
-    
+        if melon.is_sellable() == True:
+            sellability = '(CAN BE SOLD)'
+            print(f'Harvested by {melon.harvest_by} from Field {melon.harvest_from_field} {sellability}')
+        else:
+            sellability = '(NOT SELLABLE)'
+            print(f'Harvested by {melon.harvest_by} from Field {melon.harvest_from_field} {sellability}')       
 
 get_sellability_report(make_melons(make_melon_types()))
 
