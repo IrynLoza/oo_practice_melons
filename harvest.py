@@ -98,11 +98,10 @@ class Melon(object):
 
     # Fill in the rest
     # Needs __init__ and is_sellable methods
-    def __init__(self, melons_by_id, shape_rating, color_rating, harvest_from_field, harvest_by):
+    def __init__(self, melon_type, shape_rating, color_rating, harvest_from_field, harvest_by):
                 """Initialize a melon."""
 
-                self.melons_by_id = make_melon_type_lookup(make_melon_types())
-
+                self.melon_type = melon_type #create as usual, and will be working with in the next functions 
                 self.shape_rating = shape_rating
                 self.color_rating = color_rating
                 self.harvest_from_field = harvest_from_field
@@ -120,33 +119,34 @@ def make_melons(melon_types):
     """Returns a list of Melon objects."""
 
     # Fill in the rest
+    melons_by_id = make_melon_type_lookup(melon_types) #Call the function from the first part with dictionary
     all_melons = []
 
-    melon_1 = Melon([3], 8, 7, 2, 'Sheila')
+    melon_1 = Melon(melons_by_id['yw'], 8, 7, 2, 'Sheila') #pass the key (melon code) as melon_types
     all_melons.append(melon_1)
 
-    melon_2 = Melon([3], 3, 4, 2, 'Sheila')
+    melon_2 = Melon(melons_by_id['yw'], 3, 4, 2, 'Sheila')
     all_melons.append(melon_2) 
 
-    melon_3 = Melon([3], 9, 8, 3, 'Sheila')
+    melon_3 = Melon(melons_by_id['yw'], 9, 8, 3, 'Sheila')
     all_melons.append(melon_3)
 
-    melon_4 = Melon([1], 10, 6, 35, 'Sheila')
+    melon_4 = Melon(melons_by_id['cas'], 10, 6, 35, 'Sheila')
     all_melons.append(melon_4)
 
-    melon_5 = Melon([2], 8, 9, 35, 'Michael')
+    melon_5 = Melon(melons_by_id['cren'], 8, 9, 35, 'Michael')
     all_melons.append(melon_5)
 
-    melon_6 = Melon([2], 8, 2, 35, 'Michael')
+    melon_6 = Melon(melons_by_id['cren'], 8, 2, 35, 'Michael')
     all_melons.append(melon_6)
 
-    melon_7 = Melon([2], 2, 3, 4, 'Michael')
+    melon_7 = Melon(melons_by_id['cren'], 2, 3, 4, 'Michael')
     all_melons.append(melon_7)
 
-    melon_8 = Melon([0], 6, 7, 4, 'Michael')
+    melon_8 = Melon(melons_by_id['musk'], 6, 7, 4, 'Michael')
     all_melons.append(melon_8)
 
-    melon_9 = Melon([3], 7, 10, 3, 'Sheila')
+    melon_9 = Melon(melons_by_id['yw'], 7, 10, 3, 'Sheila')
     all_melons.append(melon_9)
     
     return all_melons
